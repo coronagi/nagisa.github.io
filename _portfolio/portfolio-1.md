@@ -30,7 +30,7 @@ The Heroku Toolbelt, Git, Java, PostgreSQL database
 
 **Screenshots of some features**
 
-<img src='/images/planIt-1.png'>
+<img src='/images/planIt-1.jpg'>
 
 <br>
 <br>
