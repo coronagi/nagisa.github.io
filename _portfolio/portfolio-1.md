@@ -30,7 +30,7 @@ The Heroku Toolbelt, Git, Java, PostgreSQL database
 
 **Screenshots of some features**
 
-<img src='/nagisa.github.io//images/planIt-1.jpg'>
+<img src='/nagisa.github.io//images/planIt-1.png'>
 
 <br>
 <br>
@@ -39,7 +39,7 @@ This feed shows public posts, posts of the user’s friends, and their own posts
 are shown in reverse-chronological order by default, and only the correct visibility will be
 shown. In addition, the posts can be filtered and sorted by other variables.
 
-<img src='/images/planIt2.png'>
+<img src='/nagisa.github.io/images/planIt2.png'>
 
 <br>
 <br>
@@ -49,14 +49,14 @@ post history. This can also be used to view other specific accounts.
 Every user will have a profile, which contains information about their saved details, and
 posts they have created. If the user is the owner, they will be able to edit. If not, it will only display these details and hide the private posts.
 
-<img src='/images/planIt-3.png'>
+<img src='/nagisa.github.io/images/planIt-3.png'>
 
 <br>
 <br>
 **Cost Calculator**  
 Here, they can fill in fields for flight, hotel, entry fee.If the user needs more rows for additional costs, they can click the ‘Add Row’ button. They can add extra rows up to the provided limit.The values are then totaled and displayed on screen. The user is able to import the flight cost if the ‘Flight Search” system has previously been used and saved.
 
-<img src='/images/planIt-4.png'>
+<img src='/nagisa.github.io/images/planIt-4.png'>
 
 <br>
 <br>
@@ -65,4 +65,4 @@ The user will see fields for currency,
 starting and ending locations, as well as choosing the date they want their flight. A table of flights will be shown with many rows for price, airline, and when the flight takes off.
 <br>
 
-<img src='/images/planIt-5.png'>
+<img src='/nagisa.github.io/images/planIt-5.png'>
