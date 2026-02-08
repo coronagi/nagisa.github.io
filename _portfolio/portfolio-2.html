@@ -1,0 +1,147 @@
+---
+title: "Engineer, Software Test"
+excerpt: "**_Semtech_** <br/>Co-op practicum as Software Test Engineer in Semtech"
+collection: portfolio
+period: "May 2024 – Dec 2024"
+---
+
+<section class="project">
+
+    <p>
+      <strong>Semtech Coop — QA / Test Engineer (EM Series Modules)</strong><br />
+      Software test engineer validating cellular IoT modules across Windows and Linux environments.
+    </p>
+  
+    <hr />
+  
+    <h2>Company & Product Context</h2>
+    <p>
+      Semtech provides wireless communication technologies and IoT products. During my co-op, I worked with the
+      <strong>EM series</strong> cellular communication modules (including the compact, high-performance <strong>EM92 series</strong>),
+      designed for high-speed data communication and multi-band support across regions and networks.
+    </p>
+  
+    <h2>My Role</h2>
+    <p>
+      As a <strong>QA / Test Engineer</strong>, I tested <strong>EM9291</strong> and <strong>EM9293</strong> modules, focusing on
+      host software (drivers and connectivity applications) and device firmware on both <strong>Windows</strong> and
+      <strong>Linux</strong>. I executed release test cases, reported defects, and verified fixes through structured
+      verification and validation workflows.
+    </p>
+  
+    <h2>Goals</h2>
+    <ul>
+      <li>Build practical QA skills and become fluent in the end-to-end testing workflow</li>
+      <li>Use tools effectively: <strong>JIRA</strong> (bug tracking), <strong>qTest</strong> (test management), and automation frameworks</li>
+      <li>Improve testing efficiency and accuracy through automation and repeatable procedures</li>
+    </ul>
+  
+    <h2>Test Process</h2>
+    <p>
+      The testing process begins with a test request from the test planner (including the JIRA request, deadline, and qTest
+      information). Test cases are executed according to the steps documented in qTest, then marked as
+      <strong>Passed</strong>, <strong>Blocked</strong>, <strong>Incomplete</strong>, or <strong>Failed</strong>. Based on results,
+      a new build may be generated, and previously passed tests may be omitted in subsequent cycles unless specified.
+    </p>
+    <p>
+      Ticket verification is also tracked in JIRA. Both <strong>build</strong> (driver tests) and <strong>integrated</strong>
+      (firmware tests) must be completed by the deadline, ensuring issues are reproducible and fixes are validated.
+    </p>
+  
+    <h2>Tools & Responsibilities</h2>
+  
+    <div class="two">
+      <div class="card">
+        <h3>JIRA (Bug Tracking)</h3>
+        <ul>
+          <li>Create and track tickets with clear reproduction steps and context</li>
+          <li>Attach logs/screenshots to support investigation and resolution</li>
+          <li>Communicate concisely in ticket discussions to align with developers and test planners</li>
+        </ul>
+      </div>
+  
+      <div class="card">
+        <h3>Reliability Stress Testing</h3>
+        <ul>
+          <li>Run long-duration, high-load tests to evaluate durability and reliability</li>
+          <li>Analyze failures using logs/screenshots to separate bugs vs. environment/setup issues</li>
+          <li>Reconfigure test environments and rerun tests when setup issues are identified</li>
+        </ul>
+      </div>
+    </div>
+  
+    <h2>Challenges & How I Addressed Them</h2>
+    <div class="table-wrap">
+      <table class="proj-table">
+        <thead>
+          <tr>
+            <th>Challenge</th>
+            <th>What made it hard</th>
+            <th>How I handled it</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Complex ticket verification</td>
+            <td>Past issues and interrelated problems created large amounts of logs and context to review</td>
+            <td>Reviewed explanations/comments carefully, asked experienced teammates for guidance, and clarified via Teams</td>
+          </tr>
+          <tr>
+            <td>Bug vs. setup/environment issues</td>
+            <td>Device enumeration and PCIe-related issues could look like defects but were sometimes setup problems</td>
+            <td>Started with logs, checked existing tickets, validated on different machines, and tightened reproduction conditions</td>
+          </tr>
+          <tr>
+            <td>Long-running stress tests</td>
+            <td>Tests could run up to two weeks; failures were difficult to triage quickly</td>
+            <td>Iterated systematically: isolate signals, rerun after environment reset, and document conditions in detail</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  
+    <h2>Accomplishments</h2>
+    <ul>
+      <li>Became familiar with Semtech’s testing workflow and QA tooling (JIRA, qTest)</li>
+      <li>Gained hands-on experience with <strong>automation</strong> and <strong>reliability stress testing</strong></li>
+      <li>Improved technical communication by writing clearer tickets and attaching actionable evidence (logs/screenshots)</li>
+      <li>Experienced a real Canadian work environment and strengthened professional collaboration habits</li>
+    </ul>
+  
+    <hr />
+  
+  </section>
+  
+  <style>
+    /* Consistent with the EMODE page: clean + card/table layout */
+    .project { margin-top: 1rem; }
+    .project hr { margin: 1.5rem 0; opacity: 0.25; }
+  
+    .two{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+      margin-top: 12px;
+    }
+    @media (max-width: 820px){
+      .two{ grid-template-columns: 1fr; }
+    }
+  
+    .card{
+      border: 1px solid rgba(0,0,0,0.12);
+      border-radius: 14px;
+      padding: 14px 14px;
+      background: rgba(0,0,0,0.02);
+    }
+  
+    .table-wrap { overflow-x: auto; margin: 0.75rem 0 0.5rem; }
+    .proj-table { width: 100%; border-collapse: collapse; }
+    .proj-table th, .proj-table td {
+      padding: 10px 12px;
+      border: 1px solid rgba(0,0,0,0.12);
+      vertical-align: top;
+    }
+    .proj-table th { text-align: left; }
+  
+    .links a { font-weight: 600; }
+  </style>
