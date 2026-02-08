@@ -1,0 +1,144 @@
+---
+title: "EMODE Emotion Defender Game"
+excerpt: "**_Affective_ _Computing_, _SFU_** <br/>Adding interaction to game using expression recognition"
+collection: portfolio
+period: "Jan 2024 – April 2024"
+---
+
+<strong>Affective Computing, SFU</strong><br>
+Games are a great way for people to interact with and learn new things. But there are not a lot of games that allow you to interact with them by using your face or emotions. We wanted to change that by creating the game "Emotion Defender" where the main
+form of interaction is expression recognition. By using machine learning models we are able to predict expressions on the players face. This prediction then causes some effect on the game. Where different emotions correspond to different effects. This form of
+interaction creates a fun and novel way to play. Our game provides and example of how this form of interaction can create fun and exciting interaction.
+
+<br><br>
+<br>
+<br>
+**Approach**  
+To detect user’s emotions fast and accurately, several models are developed for this game. Each using a dataset that consisted of FER-2013 dataset and annotated pictures of friends making different
+emotional face that we collected. Each image we trained with, was converted to grayscale and resized to 48x48 pixels. Method 1 and Method 1.2 were neutral networks with multiple convolutional
+layers (Conv2D(32, (3,3))), pooling layer (MaxPooling2D(2,2)), normalization layer (BatchNormalization), and all-coupling dense layers (128 and 7) for output . ReLU and Softmax were used as activation functions, and Adam was chosen as the optimization algorithm. method 1 modeled all labels, while method 1.2 analyzed only the 5 emotions actually used in the game. In method 2, basemodel
+from method 1 was used and added a new layer on top of it to fine-tune the model to identify only certain emotions (anger, happiness, sadness, surprise, neutral). The additional layers included multiple dense(16,8,5) and BatchNormalization layers, and a Softmax
+layer was introduced to predict five categories. In Method 3, after dimensionality reduction to 150 with PCA we classify using an SVC model. The SVC model uses an RBF kernel and Standard-
+Scaler for data scaling. The dataset was split into training and test data, with the models trained primarily on the training data and the performance of the models evaluated on the test data. A ModelCheckpoint callback was used to store the best models in training.
+To visualize the results of each model, we utilized the matplotlib and seaborn libraries to display the confusion matrix. The best model was then used in the game to detect players emotions. To detect
+the players emotions the game accesses the player webcam using Open CV. Then as the game is running, the game takes the image of the player and runs it though a pre-built facial recognition library. That will return the location of the face in the image. We then
+crop the image to only get the face, converting it to grayscale and scaling it to the correct size for the model. The model then takes the
+face and returns its expression prediction which is then passed to the game. This whole process runs many times per second allowing
+for responsive interaction. The game that we are linking the model too was developed in Python using Pygame and uses assets found
+on https://itch.io/game-assets[1, 6, 7]. The game is called "Emotion Defender" and it involves enemies spawning from the start of a
+path and if they get to the end of the path you lose. Each enemy is defeated by a corresponding emotion which is represented by their colour. The goal of the player is to defeat the enemies by changing facial expressions to match the enemies on screen, and survive as long as they can.
+
+
+
+<img src='/nagisa.github.io/images/planIt-4.png'>
+
+
+<br>
+<br>
+**Dataset**  
+The project uses a combined dataset consisting of FER-2013 and our own photos of various facial expressions. FER-2013 found on https: Conference’17, July 2017, Washington, DC, USA Sean Wallace, Nagisa Nakamura, and Aurora Yang //www.kaggle.com/datasets/yusufkorayhasdemir/fer2013csv contains
+thousands of samples labeled with 7 basic emotion categories of facial expressions, anger, disgust, fear, happiness, sadness, surprise,
+and neutral. Our own data includes a total of 16 images of group members and their friends, labeled anger, happiness, sadness, and surprise. The photos of group members and friends were labeled accordingly and ready to be trained with.
+
+<img src='/nagisa.github.io/images/planIt-4.png'>
+
+
+<br>
+<br>
+**Experiments and Results**  
+The first method used a Conv2D network model. Trained and validated
+using our dataset, which consists of a combination of the
+FER-2013 dataset and our own facial expression images. Training
+was done in 20 epochs, with 10% of the dataset kept as a test set
+and the rest used for training. The validation split was set to 0.2
+(20%). During the early stages of model training, the accuracy of
+the validation set gradually improved, with the highest value being
+about 55.73% at epoch 15. From the confusion matrix in Figure 1, we
+can see that happiness has the best accuracy at 71%. And sadness
+has the worst at 39%. Even though sadness had worse predictions
+than anger, we found it was difficult for the model to accurately
+predict our faces when we were angry, but it was much better at
+predicting them when we were sad. When using this model we
+found it work a lot better if we merged all of anger, fear and disgust
+into a prediction of just anger. Since anger was often being
+predicted as something else and we weren’t using disgust or fear
+for the game. This turned out quite good, so we ended up using this
+model in our game, because we had not experimented with some
+of the later models in this section.
+<img src='figure1'>
+<br>
+In method 1.2, was trained in the same way as method 1 but
+trained with data from only the four emotion categories actually
+used in the game: anger, happiness, sadness, surprise with neutral.
+Compared to the first method, which used all emotion categories,
+the probability of correctly recognizing happiness, sadness, and
+surprise increased by around 10% each, but the probability of correctly
+recognizing neutrality decreased around 10% and anger didn’t
+change much at all. We can see from Figure 2 that angry or sad
+faces would often be predict the other options. And so in actual
+use, the recognition capability for anger and sadness was low. We
+couldn’t combine any outputs so it turned out to be annoying to
+try and get some emotions, so we didn’t use it for the final version
+of the game.
+<img src='figure2'>
+The second method was to fix the weights of the early layers
+of the basemodel trained in Method 1 and create a model with
+fine-tuning on the data of the five emotion categories used in the
+game. Training was run for 20 epochs, adding new layers on top
+of the basemodel, and accuracy on the validation data improved
+from an initial 80.62% to a final 83.74%. The final accuracy of the
+model on the test set was 83.30%. From Figure 3, we can see the
+probability of accurately recognizing each emotion category was
+also significantly improved, with the lowest accuracy being anger
+at 77%, and all others being 80% or better. The strength of this
+model is not only the high accuracy of each recognition, but also
+the very low probability of misidentification with other emotions.
+For example, the probability of mistakenly recognizing "anger" as
+"sadness" was 22% in the previous method 1.2, but it is much lower
+at 7.8% in this model.
+In method 3, we used PCA and SVM to predict expressions. The
+principle component for PCA was set to 150, so we reduced the
+amount of data by about 95% speeding up training and prediction.
+The model used the entire dataset to predict all of the labeled
+emotions. The trained model implemented standardized scaling
+processes , PCA, and SVM. As we can see in Figure 5, the overall
+accuracy was 48%, which was significantly lower than the other
+models that we trained. We can see that the precision and recall
+score were similar for each category, so it wasn’t biasing towards
+predicting one expression. From Figure 4, we can see that even
+though this was a completely different machine learning technique
+it still found that happiness and surprise were the easiest to predict
+compared to other emotions.
+<img src='figure3'>
+<img src='figure4'>
+Even thought the second method, fine-tuning, predicted emotion
+categories the best, we did not have time to implement it into
+the game. And overall, when models that were created using all
+seven emotion categories were tested for real-time facial expression
+recognition, there was a tendency for low accuracy in recognizing
+the expression of anger. Therefore, if the model analyzed an expression
+as disgust or fear, we treated it as anger, which allowed for a
+smoother gaming experience.
+When creating the game we had to make sure that using your
+face wouldn’t be a pain and that players would enjoy use it. When
+we used the models in the game, it turned out to be fun and engaging.
+The model would predict fast enough that we were able to update
+expression predictions many times per second. Even though the
+models weren’t perfectly accurate, they were good enough since
+we are updating the predictions many times a second, the player
+has lots of time to play around and try to find a face that the model
+will predict correctly. The game was also quite forgiving since there
+was never any punishment for getting a face wrong. Only positive
+actions happened when the face was got right.
+As you can see from Figure 6, the game included UI elements
+that allowed the player to see who facial expression was being
+predicted and what the current prediction was. Adding in these
+elements made the game easier to work with, as the player could
+check if they were being tracked or what type of faces would result
+in different emotions.
+We thought that combining this game with a facial recognition
+model made for a fun game that was responsive and interactive.
+And making the information around detection clear to the player
+valuable to the experience.
+<img src='figure5'>
+<img src='figure6'>

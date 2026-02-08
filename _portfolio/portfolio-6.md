@@ -2,6 +2,7 @@
 title: "PlanIt"
 excerpt: "**_Software_ _Engineering_, _SFU_**<br/>PlanIt is a social-media-like application designed for planning travelling more easily"
 collection: portfolio
+period: "May 2021 – Aug 2021"
 ---
 
 **Software Engineering at SFU**

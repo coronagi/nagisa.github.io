@@ -1,0 +1,68 @@
+---
+title: "Operational Research of Diabetic Foot Ulcers"
+excerpt: "**_Vancouver_ _Coastal_ _Health_, _SFU_** <br/>Built a data driven Markov model to show how TCC can improve patient outcomes"
+collection: portfolio
+period: "Jan 2025 – April 2025"
+---
+
+<br><strong>SFU Operations Research in collaboration with Vancouver Coastal Health</strong><br>
+This project was completed in SFU’s Operations Research course (MATH 402W) in collaboration with Vancouver Coastal Health (VCH).
+Working with two other team members, we evaluated two diabetic foot ulcer (DFU) treatment strategies 
+-Total Contact Casting (TCC) and conventional regular dressings
+with a focus on Vancouver and the Canadian healthcare context.
+Because the project was conducted with VCH, we prioritized Canadian (and where possible, British Columbia–specific) data 
+for costs, transportation assumptions, and emissions-related parameters.
+This project was selected as a finalist for presentation at the 2025 Canadian Operational Research Society Conference.
+<br>
+
+<br><strong>My Contribution</strong><br>
+I was responsible for constructing the Markov model, carrying out the cost assessment based on the model outputs,
+and collecting the supporting data needed to parameterize the analysis. 
+This included gathering Vancouver-focused inputs (e.g., local transportation cost assumptions and gas price inputs) 
+and ensuring the model and cost structure aligned with the report’s scope and available VCH-relevant information.
+<br>
+
+<br><strong>Markov Model Construction</strong><br>
+To compare long-term outcomes between TCC and regular dressings, 
+I implemented a cohort Markov model that simulates DFU progression over 5 years. 
+The model tracks 5,000 patients across six health states: DFU (unhealed), Healed, Recurrence, Amputation, Healed Amputation, and Mortality, 
+where Mortality is treated as an absorbing state. 
+Each cycle represents four months, and the simulation runs for 15 cycles. 
+Transition probabilities for the regular dressing strategy were adopted from the literature, while the TCC strategy was adjusted using reported clinical benchmark healing performance 
+(TCC: 90% healing in 42 days vs. regular wound care: 50% in 365 days). 
+The transition matrix approach was implemented in Python using NumPy, allowing us to generate state distributions over time and compare the two treatment pathways.
+<br>
+<img src='/nagisa.github.io/images/markov1.png'>
+<img src='/nagisa.github.io/images/markov2.png'>
+<br>
+Using Health Quality BC benchmarks (TCC: 90% healing in 42 days vs. regular care: 50% in 365 days), 
+we adjusted the transition probabilities for DFU → Healed, DFU → Amputation, and Recurrence → Healed to reflect TCC’s improved healing performance, 
+while keeping the rest of the transition structure consistent with the regular dressing model.
+<br>
+
+
+<br><strong>Cost Assessment Based on Model Outputs</strong><br>
+Using the simulated state distributions from the Markov model, 
+I led the economic evaluation by defining a cost vector for each health state and calculating costs per cycle by multiplying the cost vector by the state distribution. 
+For regular dressings, DFU and Recurrence were modeled with ongoing per-cycle costs driven by visit frequency, materials, labor, and a 30% overhead assumption. 
+For TCC, DFU and Recurrence carried higher per-cycle costs reflecting specialized casting kits and clinical labor, 
+including an inflation-adjusted conversion of reported TCC kit value to 2025 CAD using health CPI assumptions in the report. 
+High-cost events were represented explicitly, with Amputation and Mortality assigned large one-time costs in the model framework. 
+This structure allowed us to compare both per-cycle costs and cumulative costs over the 5-year horizon 
+and explain why TCC can be more expensive upfront but lower in long-run spending due to fewer transitions into severe, high-cost states.
+<br>
+<img src='/nagisa.github.io/images/cost.png'>
+<br>
+
+
+
+<br><strong>Key Findings</strong><br>
+The results showed that TCC produced better long-term outcomes than regular dressings in the simulation. 
+By Cycle 15, the model projected 3,958 patients in the Healed state under TCC compared with 2,054 under regular dressings. 
+Despite higher initial treatment costs, the analysis concluded that TCC reduced cumulative costs by ~50% over 5 years, primarily due to fewer amputations and mortality cases. 
+In the environmental component of the report (transportation-related only), the reduced visit frequency for TCC (assumed 6 vs. 120 visits per patient) translated into 94.8% lower travel-related CO₂ per patient (3.46 kg vs. 67.02 kg), 
+reinforcing that the operational design of care pathways can influence both cost and sustainability outcomes.
+<br>
+<img src='/nagisa.github.io/images/outcome1.png'>
+<img src='/nagisa.github.io/images/outcome2.png'>
+<br>
